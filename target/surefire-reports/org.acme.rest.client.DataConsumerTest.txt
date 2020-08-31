@@ -1,0 +1,117 @@
+-------------------------------------------------------------------------------
+Test set: org.acme.rest.client.DataConsumerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.369 s <<< FAILURE! - in org.acme.rest.client.DataConsumerTest
+org.acme.rest.client.DataConsumerTest.testHelloEndpoint  Time elapsed: 0.013 s  <<< ERROR!
+java.lang.RuntimeException: 
+java.lang.RuntimeException: io.quarkus.builder.BuildException: Build failure: Build failed due to errors
+	[error]: Build step io.quarkus.arc.deployment.ArcProcessor#validate threw an exception: javax.enterprise.inject.spi.DeploymentException: javax.enterprise.inject.UnsatisfiedResolutionException: Unsatisfied dependency for type org.acme.rest.client.boundary.DataProducerService and qualifiers [@Default]
+	- java member: org.acme.rest.client.boundary.DataConsumerResource#dataProducerService
+	- declared on CLASS bean [types=[java.lang.Object, org.acme.rest.client.boundary.DataConsumerResource], qualifiers=[@Default, @Any], target=org.acme.rest.client.boundary.DataConsumerResource]
+	The following beans match by type, but none have matching qualifiers:
+		- Bean [class=org.acme.rest.client.boundary.DataProducerService, qualifiers=[@org.eclipse.microprofile.rest.client.inject.RestClient, @Any]]
+	at io.quarkus.arc.processor.BeanDeployment.processErrors(BeanDeployment.java:990)
+	at io.quarkus.arc.processor.BeanDeployment.init(BeanDeployment.java:234)
+	at io.quarkus.arc.processor.BeanProcessor.initialize(BeanProcessor.java:122)
+	at io.quarkus.arc.deployment.ArcProcessor.validate(ArcProcessor.java:391)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at io.quarkus.deployment.ExtensionLoader$2.execute(ExtensionLoader.java:932)
+	at io.quarkus.builder.BuildContext.run(BuildContext.java:277)
+	at org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+	at org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:2046)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1578)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1452)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+	at org.jboss.threads.JBossThread.run(JBossThread.java:479)
+Caused by: javax.enterprise.inject.UnsatisfiedResolutionException: Unsatisfied dependency for type org.acme.rest.client.boundary.DataProducerService and qualifiers [@Default]
+	- java member: org.acme.rest.client.boundary.DataConsumerResource#dataProducerService
+	- declared on CLASS bean [types=[java.lang.Object, org.acme.rest.client.boundary.DataConsumerResource], qualifiers=[@Default, @Any], target=org.acme.rest.client.boundary.DataConsumerResource]
+	The following beans match by type, but none have matching qualifiers:
+		- Bean [class=org.acme.rest.client.boundary.DataProducerService, qualifiers=[@org.eclipse.microprofile.rest.client.inject.RestClient, @Any]]
+	at io.quarkus.arc.processor.Beans.resolveInjectionPoint(Beans.java:494)
+	at io.quarkus.arc.processor.BeanInfo.init(BeanInfo.java:362)
+	at io.quarkus.arc.processor.BeanDeployment.init(BeanDeployment.java:226)
+	... 14 more
+
+Caused by: java.lang.RuntimeException: 
+io.quarkus.builder.BuildException: Build failure: Build failed due to errors
+	[error]: Build step io.quarkus.arc.deployment.ArcProcessor#validate threw an exception: javax.enterprise.inject.spi.DeploymentException: javax.enterprise.inject.UnsatisfiedResolutionException: Unsatisfied dependency for type org.acme.rest.client.boundary.DataProducerService and qualifiers [@Default]
+	- java member: org.acme.rest.client.boundary.DataConsumerResource#dataProducerService
+	- declared on CLASS bean [types=[java.lang.Object, org.acme.rest.client.boundary.DataConsumerResource], qualifiers=[@Default, @Any], target=org.acme.rest.client.boundary.DataConsumerResource]
+	The following beans match by type, but none have matching qualifiers:
+		- Bean [class=org.acme.rest.client.boundary.DataProducerService, qualifiers=[@org.eclipse.microprofile.rest.client.inject.RestClient, @Any]]
+	at io.quarkus.arc.processor.BeanDeployment.processErrors(BeanDeployment.java:990)
+	at io.quarkus.arc.processor.BeanDeployment.init(BeanDeployment.java:234)
+	at io.quarkus.arc.processor.BeanProcessor.initialize(BeanProcessor.java:122)
+	at io.quarkus.arc.deployment.ArcProcessor.validate(ArcProcessor.java:391)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at io.quarkus.deployment.ExtensionLoader$2.execute(ExtensionLoader.java:932)
+	at io.quarkus.builder.BuildContext.run(BuildContext.java:277)
+	at org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+	at org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:2046)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1578)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1452)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+	at org.jboss.threads.JBossThread.run(JBossThread.java:479)
+Caused by: javax.enterprise.inject.UnsatisfiedResolutionException: Unsatisfied dependency for type org.acme.rest.client.boundary.DataProducerService and qualifiers [@Default]
+	- java member: org.acme.rest.client.boundary.DataConsumerResource#dataProducerService
+	- declared on CLASS bean [types=[java.lang.Object, org.acme.rest.client.boundary.DataConsumerResource], qualifiers=[@Default, @Any], target=org.acme.rest.client.boundary.DataConsumerResource]
+	The following beans match by type, but none have matching qualifiers:
+		- Bean [class=org.acme.rest.client.boundary.DataProducerService, qualifiers=[@org.eclipse.microprofile.rest.client.inject.RestClient, @Any]]
+	at io.quarkus.arc.processor.Beans.resolveInjectionPoint(Beans.java:494)
+	at io.quarkus.arc.processor.BeanInfo.init(BeanInfo.java:362)
+	at io.quarkus.arc.processor.BeanDeployment.init(BeanDeployment.java:226)
+	... 14 more
+
+Caused by: io.quarkus.builder.BuildException: 
+Build failure: Build failed due to errors
+	[error]: Build step io.quarkus.arc.deployment.ArcProcessor#validate threw an exception: javax.enterprise.inject.spi.DeploymentException: javax.enterprise.inject.UnsatisfiedResolutionException: Unsatisfied dependency for type org.acme.rest.client.boundary.DataProducerService and qualifiers [@Default]
+	- java member: org.acme.rest.client.boundary.DataConsumerResource#dataProducerService
+	- declared on CLASS bean [types=[java.lang.Object, org.acme.rest.client.boundary.DataConsumerResource], qualifiers=[@Default, @Any], target=org.acme.rest.client.boundary.DataConsumerResource]
+	The following beans match by type, but none have matching qualifiers:
+		- Bean [class=org.acme.rest.client.boundary.DataProducerService, qualifiers=[@org.eclipse.microprofile.rest.client.inject.RestClient, @Any]]
+	at io.quarkus.arc.processor.BeanDeployment.processErrors(BeanDeployment.java:990)
+	at io.quarkus.arc.processor.BeanDeployment.init(BeanDeployment.java:234)
+	at io.quarkus.arc.processor.BeanProcessor.initialize(BeanProcessor.java:122)
+	at io.quarkus.arc.deployment.ArcProcessor.validate(ArcProcessor.java:391)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at io.quarkus.deployment.ExtensionLoader$2.execute(ExtensionLoader.java:932)
+	at io.quarkus.builder.BuildContext.run(BuildContext.java:277)
+	at org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+	at org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:2046)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1578)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1452)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+	at org.jboss.threads.JBossThread.run(JBossThread.java:479)
+Caused by: javax.enterprise.inject.UnsatisfiedResolutionException: Unsatisfied dependency for type org.acme.rest.client.boundary.DataProducerService and qualifiers [@Default]
+	- java member: org.acme.rest.client.boundary.DataConsumerResource#dataProducerService
+	- declared on CLASS bean [types=[java.lang.Object, org.acme.rest.client.boundary.DataConsumerResource], qualifiers=[@Default, @Any], target=org.acme.rest.client.boundary.DataConsumerResource]
+	The following beans match by type, but none have matching qualifiers:
+		- Bean [class=org.acme.rest.client.boundary.DataProducerService, qualifiers=[@org.eclipse.microprofile.rest.client.inject.RestClient, @Any]]
+	at io.quarkus.arc.processor.Beans.resolveInjectionPoint(Beans.java:494)
+	at io.quarkus.arc.processor.BeanInfo.init(BeanInfo.java:362)
+	at io.quarkus.arc.processor.BeanDeployment.init(BeanDeployment.java:226)
+	... 14 more
+
+Caused by: javax.enterprise.inject.spi.DeploymentException: 
+javax.enterprise.inject.UnsatisfiedResolutionException: Unsatisfied dependency for type org.acme.rest.client.boundary.DataProducerService and qualifiers [@Default]
+	- java member: org.acme.rest.client.boundary.DataConsumerResource#dataProducerService
+	- declared on CLASS bean [types=[java.lang.Object, org.acme.rest.client.boundary.DataConsumerResource], qualifiers=[@Default, @Any], target=org.acme.rest.client.boundary.DataConsumerResource]
+	The following beans match by type, but none have matching qualifiers:
+		- Bean [class=org.acme.rest.client.boundary.DataProducerService, qualifiers=[@org.eclipse.microprofile.rest.client.inject.RestClient, @Any]]
+Caused by: javax.enterprise.inject.UnsatisfiedResolutionException: 
+Unsatisfied dependency for type org.acme.rest.client.boundary.DataProducerService and qualifiers [@Default]
+	- java member: org.acme.rest.client.boundary.DataConsumerResource#dataProducerService
+	- declared on CLASS bean [types=[java.lang.Object, org.acme.rest.client.boundary.DataConsumerResource], qualifiers=[@Default, @Any], target=org.acme.rest.client.boundary.DataConsumerResource]
+	The following beans match by type, but none have matching qualifiers:
+		- Bean [class=org.acme.rest.client.boundary.DataProducerService, qualifiers=[@org.eclipse.microprofile.rest.client.inject.RestClient, @Any]]
+

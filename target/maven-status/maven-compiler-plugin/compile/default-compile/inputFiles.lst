@@ -1,0 +1,3 @@
+/home/rhertle/dev/quarkus-techlab/code/data-consumer/src/main/java/org/acme/rest/client/entity/SensorMeasurement.java
+/home/rhertle/dev/quarkus-techlab/code/data-consumer/src/main/java/org/acme/rest/client/boundary/DataConsumerResource.java
+/home/rhertle/dev/quarkus-techlab/code/data-consumer/src/main/java/org/acme/rest/client/boundary/DataProducerService.java
