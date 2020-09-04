@@ -1,4 +1,4 @@
-package ch.puzzle.quarkustechlab.consumer.entity;
+package ch.puzzle.quarkustechlab.restconsumer.entity;
 
 public class SensorMeasurement {
 

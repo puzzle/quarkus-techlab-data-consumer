@@ -1,11 +1,11 @@
-package ch.puzzle.quarkustechlab.consumer.boundary;
+package ch.puzzle.quarkustechlab.restconsumer.boundary;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import ch.puzzle.quarkustechlab.consumer.entity.SensorMeasurement;
+import ch.puzzle.quarkustechlab.restconsumer.entity.SensorMeasurement;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 @Path("/data")
