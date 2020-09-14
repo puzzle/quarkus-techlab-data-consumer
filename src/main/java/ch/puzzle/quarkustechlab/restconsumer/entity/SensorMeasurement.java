@@ -1,4 +1,4 @@
-package org.acme.rest.client.entity;
+package ch.puzzle.quarkustechlab.restconsumer.entity;
 
 public class SensorMeasurement {
 
