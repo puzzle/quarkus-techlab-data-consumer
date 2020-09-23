@@ -27,12 +27,11 @@ public class ReactiveDataConsumer {
 
     @Incoming("data")
     public CompletionStage<Void> consumeStream(Message<SensorMeasurement> message) {
-        logger.info("Message received");
         Optional<IncomingKafkaRecordMetadata> metadata = message.getMetadata(IncomingKafkaRecordMetadata.class);
         if (metadata.isPresent()) {
             SpanContext extract = tracer.extract(Format.Builtin.TEXT_MAP, new HeadersMapExtractAdapter(metadata.get().getHeaders()));
             try (Scope scope = tracer.buildSpan("consume-data").asChildOf(extract).startActive(true)) {
-                logger.info("Received jaeger metadata: " + JsonbBuilder.create().toJson(message.getPayload()));
+                logger.info("Received message: " + JsonbBuilder.create().toJson(message.getPayload()));
                 return message.ack();
             }
         }
