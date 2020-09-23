@@ -6,6 +6,25 @@ metadata:
 items:
 
   - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      labels:
+        application: quarkus-techlab
+      name: data-consumer
+    spec:
+      lookupPolicy:
+        local: false
+      tags:
+        - annotations:
+            openshift.io/imported-from: g1raffi/quarkus-techlab-data-consumer:kafka
+          from:
+            kind: DockerImage
+            name: g1raffi/quarkus-techlab-data-consumer:kafka
+          name: kafka
+          referencePolicy:
+            type: Source
+
+  - apiVersion: v1
     kind: DeploymentConfig
     metadata:
       labels:
@@ -24,7 +43,7 @@ items:
             deploymentConfig: data-consumer
         spec:
           containers:
-            - image: g1raffi/data-consumer:kafka
+            - image: data-consumer:kafka
               imagePullPolicy: Always
               livenessProbe:
                 failureThreshold: 5
@@ -60,7 +79,15 @@ items:
                   memory: 100Mi
       triggers:
         - type: ConfigChange
-  
+        - imageChangeParams:
+            automatic: true
+            containerNames:
+              - data-consumer
+            from:
+              kind: ImageStreamTag
+              name: data-consumer:kafka
+          type: ImageChange
+
   - apiVersion: v1
     kind: Service
     metadata:
