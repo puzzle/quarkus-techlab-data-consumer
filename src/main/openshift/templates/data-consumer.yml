@@ -5,27 +5,8 @@ metadata:
     application: quarkus-techlab
 items:
 
-  - apiVersion: v1
-    kind: ImageStream
-    metadata:
-      labels:
-        application: quarkus-techlab
-      name: data-consumer
-    spec:
-      lookupPolicy:
-        local: false
-      tags:
-        - annotations:
-            openshift.io/imported-from: g1raffi/quarkus-techlab-data-consumer:rest
-          from:
-            kind: DockerImage
-            name: g1raffi/quarkus-techlab-data-consumer:rest
-          name: rest
-          referencePolicy:
-            type: Source
-
-  - apiVersion: v1
-    kind: DeploymentConfig
+  - apiVersion: apps/v1
+    kind: Deployment
     metadata:
       labels:
         application: quarkus-techlab
@@ -33,17 +14,16 @@ items:
     spec:
       replicas: 1
       selector:
-        deploymentConfig: data-consumer
-      strategy:
-        type: Recreate
+        matchLabels:
+          deployment: data-consumer
       template:
         metadata:
           labels:
             application: quarkus-techlab
-            deploymentConfig: data-consumer
+            deployment: data-consumer
         spec:
           containers:
-            - image: data-consumer:rest
+            - image: g1raffi/quarkus-techlab-data-consumer:rest
               imagePullPolicy: Always
               livenessProbe:
                 failureThreshold: 5
@@ -77,16 +57,6 @@ items:
                 requests:
                   cpu: 50m
                   memory: 100Mi
-      triggers:
-        - type: ConfigChange
-        - imageChangeParams:
-            automatic: true
-            containerNames:
-              - data-consumer
-            from:
-              kind: ImageStreamTag
-              name: data-consumer:rest
-          type: ImageChange
 
   - apiVersion: v1
     kind: Service
@@ -101,7 +71,7 @@ items:
           protocol: TCP
           targetPort: 8080
       selector:
-        deploymentConfig: data-consumer
+        deployment: data-consumer
       sessionAffinity: None
       type: ClusterIP
 
