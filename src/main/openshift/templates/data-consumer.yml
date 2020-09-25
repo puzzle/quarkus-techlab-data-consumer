@@ -85,7 +85,7 @@ items:
               - data-consumer
             from:
               kind: ImageStreamTag
-              name: data-consumer:kafka
+              name: data-consumer:rest
           type: ImageChange
 
   - apiVersion: v1
