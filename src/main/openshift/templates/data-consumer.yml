@@ -16,11 +16,11 @@ items:
         local: false
       tags:
         - annotations:
-            openshift.io/imported-from: g1raffi/quarkus-techlab-data-consumer:kafka
+            openshift.io/imported-from: g1raffi/quarkus-techlab-data-consumer:rest
           from:
             kind: DockerImage
-            name: g1raffi/quarkus-techlab-data-consumer:kafka
-          name: kafka
+            name: g1raffi/quarkus-techlab-data-consumer:rest
+          name: rest
           referencePolicy:
             type: Source
 
@@ -43,7 +43,7 @@ items:
             deploymentConfig: data-consumer
         spec:
           containers:
-            - image: data-consumer:kafka
+            - image: data-consumer:rest
               imagePullPolicy: Always
               livenessProbe:
                 failureThreshold: 5
