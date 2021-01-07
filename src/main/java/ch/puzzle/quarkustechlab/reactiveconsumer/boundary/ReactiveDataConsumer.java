@@ -9,6 +9,7 @@ import io.opentracing.propagation.Format;
 import io.smallrye.reactive.messaging.kafka.IncomingKafkaRecordMetadata;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
