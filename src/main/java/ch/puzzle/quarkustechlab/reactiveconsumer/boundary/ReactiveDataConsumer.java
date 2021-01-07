@@ -22,6 +22,9 @@ public class ReactiveDataConsumer {
 
     private final Logger logger = Logger.getLogger(ReactiveDataConsumer.class.getName());
 
+    @ConfigProperty(name = "quarkus.jaeger.enabled")
+    Boolean jaegerEnabled;
+
     @Inject
     Tracer tracer;
 
@@ -30,9 +33,13 @@ public class ReactiveDataConsumer {
         logger.info("Message received");
         Optional<IncomingKafkaRecordMetadata> metadata = message.getMetadata(IncomingKafkaRecordMetadata.class);
         if (metadata.isPresent()) {
-            SpanContext extract = tracer.extract(Format.Builtin.TEXT_MAP, new HeadersMapExtractAdapter(metadata.get().getHeaders()));
-            try (Scope scope = tracer.buildSpan("consume-data").asChildOf(extract).startActive(true)) {
-                logger.info("Received jaeger metadata: " + JsonbBuilder.create().toJson(message.getPayload()));
+            if(jaegerEnabled){
+                SpanContext extract = tracer.extract(Format.Builtin.TEXT_MAP, new HeadersMapExtractAdapter(metadata.get().getHeaders()));
+                try (Scope scope = tracer.buildSpan("consume-data").asChildOf(extract).startActive(true)) {
+                    logger.info("Received jaeger metadata: " + JsonbBuilder.create().toJson(message.getPayload()));
+                    return message.ack();
+                }
+            }else{
                 return message.ack();
             }
         }
