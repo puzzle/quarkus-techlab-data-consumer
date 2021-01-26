@@ -18,7 +18,7 @@ jobs:
       - name: Set Environment
         run: |           
           echo "${GITHUB_REF}"
-           echo ${{secrets.QUAYIO_TOKEN}}
+           echo "TOKEN: ${{ secrets.QUAYIO_TOKEN }}"
           if [[ ${GITHUB_REF} == "ref/branch/jaegerkafka" ]]; then
             echo "SLACK_COLOR=good" >> $GITHUB_ENV
             echo "SLACK_MESSAGE=This build has passed!" >> $GITHUB_ENV
