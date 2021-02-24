@@ -7,6 +7,8 @@ import io.opentracing.SpanContext;
 import io.opentracing.Tracer;
 import io.opentracing.propagation.Format;
 import io.smallrye.reactive.messaging.kafka.IncomingKafkaRecordMetadata;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -30,6 +32,7 @@ public class ReactiveDataConsumer {
     Tracer tracer;
 
     @Incoming("data")
+    @Counted(name = "consumedMessages", unit = MetricUnits.NONE, description = "consumed messages by consumer")
     public CompletionStage<Void> consumeStream(Message<SensorMeasurement> message) {
 
         Optional<IncomingKafkaRecordMetadata> metadata = message.getMetadata(IncomingKafkaRecordMetadata.class);
